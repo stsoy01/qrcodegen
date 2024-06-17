@@ -1,5 +1,5 @@
 import './App.css';
-import QrCode from "./components/qrcode/QR";
+import QrCode from "./components/qrcode/Qrcode";
 
 function App() {
     return (
