@@ -1,10 +1,11 @@
 import './App.css';
-import QrCode from "./components/qrcode/Qrcode";
+import QrCode from './components/qrcode/qrcode/Qrcode'
+
 
 function App() {
-    return (
-        <QrCode></QrCode>
-    );
+  return (
+    <QrCode></QrCode>
+  );
 }
 
 export default App;
