@@ -58,43 +58,24 @@ export default class Encoder extends EncodeData {
 
     getErrorCorrectionVersion(obj, mode, stringLength) {
 
-
         for (const num in obj) {
             this.errorCorrectionObject.version = num;
-            // console.log('version', num)
+
+
+
             for (const prop in obj[num]) {
-                if (obj[num][prop][mode] === 77) {
-                    this.errorCorrectionObject.letter = obj[num][prop][mode];
+                if (obj[num][prop][mode] === 734) {
                     return this.errorCorrectionObject;
                 }
-                // console.log('value', obj[num][prop][mode])
+                Object.entries(obj[num]).forEach(el => {
+                    if (el[1][mode] === 734) {
+                        this.errorCorrectionObject.letter = el[0];
+                        this.errorCorrectionObject.value = el[1];
+
+                    }
+                    return this.errorCorrectionObject;
+                })
             }
-
-
-            // if (typeof obj[prop] === 'object') {
-            //
-            //
-            //
-            //     if (obj[prop][mode] === 157) {
-            //
-            //     }
-            //
-            //
-            //     if (prop !== 'M' && prop !== 'L' && prop !== 'Q' && prop !== 'H') {
-            //         this.errorCorrectionObject['label'] = prop
-            //
-            //     }
-            //     if (typeof obj[prop][mode] === 'number') {
-            //         this.errorCorrectionObject['value'] = obj[prop][mode]
-            //     }
-            //
-            //
-            //     this.getErrorCorrectionVersion(obj[prop], mode, stringLength)
-            // } else {
-            // }
         }
-        // return this.errorCorrectionObject
     }
-
-
 }
