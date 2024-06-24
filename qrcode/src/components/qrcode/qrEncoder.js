@@ -77,4 +77,10 @@ export default class Encoder extends EncodeData {
     setBitsNumber(eCVersion) {
         return errorCorrectionCodeWords[eCVersion] * 8;
     }
+
+    complete8BitCapacity(modeIndicator, characterCountIndicator, encodedData, dataBitCapacity, terminator = '0000') {
+        let _8bitString = `${modeIndicator}${characterCountIndicator}${encodedData.join('')}${terminator}`
+        _8bitString = _8bitString.match(/.{1,8}/g).map(el => el.length !== 8 ? el.padEnd(8, '0') : el)
+        return _8bitString.join('').padEnd(dataBitCapacity, '1110110000010001')
+    }
 }

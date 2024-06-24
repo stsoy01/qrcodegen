@@ -5,15 +5,23 @@ import Encoder from "../qrEncoder";
 export default function QrCode() {
 
     const encoder = new Encoder();
-    const binaryEncoding = encoder.alphanumericEncoding('alphaNumeric', '12314567891');
-    console.table(binaryEncoding)
+    const binaryEncoding = encoder.alphanumericEncoding('alphaNumeric', 'asdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdas');
+    console.table( binaryEncoding)
 
     const errorCorrection = encoder.getErrorCorrectionVersion(
         encoder.errorCorrectionVersion,
         'alphaNumeric',
         binaryEncoding.characterCount.decimal);
     console.log('errorCorrection', errorCorrection)
-    console.log( encoder.setBitsNumber(errorCorrection.version))
+    const dataBitCapacity = encoder.setBitsNumber(errorCorrection.version);
+    console.log('dataBitCapacity', dataBitCapacity)
+    const full8BitString = encoder.complete8BitCapacity(
+        binaryEncoding.modeIndicator.data,
+        binaryEncoding.characterCount.binary,
+        binaryEncoding.encodedData,
+        dataBitCapacity
+    )
+    console.log('full8BitString', full8BitString)
 
 
     return (
