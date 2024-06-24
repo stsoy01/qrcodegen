@@ -83,4 +83,18 @@ export default class Encoder extends EncodeData {
         _8bitString = _8bitString.match(/.{1,8}/g).map(el => el.length !== 8 ? el.padEnd(8, '0') : el)
         return _8bitString.join('').padEnd(dataBitCapacity, '1110110000010001')
     }
+
+    setPolynomial8BitDataString(_8bitString) {
+        console.log('string', _8bitString.match(/.{1,8}/g))
+    }
+
+    binaryToDecimal(num) {
+        let numArray = num.match(/.{1,8}/g);
+        let arr = []
+        for (let i = 0; i < numArray.length; i++) {
+            for (let j = 0; j < 8; j++) {
+                console.log(numArray[i][j])
+            }
+        }
+    }
 }
