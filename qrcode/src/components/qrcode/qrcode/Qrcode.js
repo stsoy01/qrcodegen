@@ -1,11 +1,15 @@
 import '../qrEncoder'
 import './qrcode.css'
 import Encoder from "../qrEncoder";
+import {useState} from "react";
 
 export default function QrCode() {
 
+    const [qr, setQR] = useState('')
+    const inputData = {}
+
     const encoder = new Encoder();
-    const binaryEncoding = encoder.alphanumericEncoding('alphaNumeric', 'Hello world');
+    const binaryEncoding = encoder.alphanumericEncoding('alphaNumeric', 'hello world');
     // console.table( binaryEncoding)
 
     const errorCorrection = encoder.getErrorCorrectionVersion(
@@ -25,10 +29,17 @@ export default function QrCode() {
     encoder.binaryToDecimal(full8BitString)
 
 
+
+    function ringing(e) {
+        setQR(e.target.value)
+    }
+
+
     return (
         <>
             <div className={'qr'}>
-                <input type={"text"}/>
+                <input onChange={ringing}  type={"text"}/>
+                <button >{"Generate QR"}</button>
             </div>
         </>
 
