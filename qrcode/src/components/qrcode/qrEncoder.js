@@ -1,7 +1,5 @@
 import EncodeData from "./encodeData";
 import {errorCorrectionCodeWords} from "./errorCorrectionVersion";
-import {type} from "@testing-library/user-event/dist/type";
-import {logDOM} from "@testing-library/react";
 
 export default class Encoder extends EncodeData {
 
@@ -93,7 +91,6 @@ export default class Encoder extends EncodeData {
     binaryToDecimal(num) {
         let numArray = num.match(/.{1,8}/g);
         let index = 7;
-        let decimal = 0;
         let counter = 0
         let arr = []
         for (let number of numArray) {
@@ -106,7 +103,6 @@ export default class Encoder extends EncodeData {
                     index = 7
                     arr.push(counter);
                     counter = 0;
-                    decimal = 0
                 }
             }
         }
