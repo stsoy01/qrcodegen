@@ -1,8 +1,10 @@
 import EncodeData from "./encodeData";
+import {errorCorrectionCodeWords} from "./errorCorrectionVersion";
 
 export default class Encoder extends EncodeData {
 
     errorCorrectionObject = {}
+    counter = 0;
 
     alphanumericEncoding(mode = 'alphaNumeric', str) {
         const string = str.toUpperCase().split('');
@@ -57,25 +59,22 @@ export default class Encoder extends EncodeData {
     }
 
     getErrorCorrectionVersion(obj, mode, stringLength) {
-
-        for (const num in obj) {
-            this.errorCorrectionObject.version = num;
-
-
-
-            for (const prop in obj[num]) {
-                if (obj[num][prop][mode] === 734) {
-                    return this.errorCorrectionObject;
-                }
-                Object.entries(obj[num]).forEach(el => {
-                    if (el[1][mode] === 734) {
-                        this.errorCorrectionObject.letter = el[0];
-                        this.errorCorrectionObject.value = el[1];
-
+        for (const version in obj) {
+            Object.entries(obj[version]).forEach((el) => {
+                if (el[1][mode] >= stringLength && this.counter === 0) {
+                    this.errorCorrectionObject.version = `${version}-${el[0]}`;
+                    this.errorCorrectionObject.data = {
+                        value: el[1][mode],
+                        mode: mode
                     }
-                    return this.errorCorrectionObject;
-                })
-            }
+                    this.counter++;
+                }
+            })
         }
+        return this.errorCorrectionObject
+    }
+
+    setBitsNumber(eCVersion) {
+        return errorCorrectionCodeWords[eCVersion] * 8;
     }
 }
