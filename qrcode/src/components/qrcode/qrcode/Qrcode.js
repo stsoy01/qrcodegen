@@ -10,15 +10,15 @@ export default function QrCode() {
 
     const encoder = new Encoder();
     const binaryEncoding = encoder.alphanumericEncoding('alphaNumeric', 'hello world');
-    // console.table( binaryEncoding)
+    console.table( binaryEncoding)
 
     const errorCorrection = encoder.getErrorCorrectionVersion(
         encoder.errorCorrectionVersion,
         'alphaNumeric',
         binaryEncoding.characterCount.decimal);
-    // console.log('errorCorrection', errorCorrection)
+    console.log('errorCorrection', errorCorrection)
     const dataBitCapacity = encoder.setBitsNumber(errorCorrection.version);
-    // console.log('dataBitCapacity', dataBitCapacity)
+    console.log('dataBitCapacity', dataBitCapacity)
     const full8BitString = encoder.complete8BitCapacity(
         binaryEncoding.modeIndicator.data,
         binaryEncoding.characterCount.binary,
@@ -26,7 +26,7 @@ export default function QrCode() {
         dataBitCapacity
     )
     encoder.setPolynomial8BitDataString(full8BitString)
-    encoder.binaryToDecimal(full8BitString)
+    console.log(encoder.binaryToDecimal(full8BitString))
 
 
 

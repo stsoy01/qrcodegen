@@ -9,23 +9,23 @@ export default class Encoder extends EncodeData {
     alphanumericEncoding(mode = 'alphaNumeric', str) {
         const string = str.toUpperCase().split('');
         let stringArray = [];
-        let counter = 0;
+        let counterIndex = 0;
 
         for (let i = 0; i < string.length; i++) {
 
             if (i % 2 === 0) {
-                counter = this.alphanumericTable[string[i]] * 45;
-                counter += this.alphanumericTable[string[i + 1]]
+                counterIndex = this.alphanumericTable[string[i]] * 45;
+                counterIndex += this.alphanumericTable[string[i + 1]]
 
-                if (counter) {
-                    stringArray.push(this.decimalToBinary(counter))
+                if (counterIndex) {
+                    stringArray.push(this.decimalToBinary(counterIndex))
                 } else {
-                    counter = this.alphanumericTable[string[i]];
-                    stringArray.push(this.decimalToBinary(counter))
+                    counterIndex = this.alphanumericTable[string[i]];
+                    stringArray.push(this.decimalToBinary(counterIndex).slice(5))
                 }
             }
 
-            counter = 0;
+            counterIndex = 0;
         }
 
         return {
@@ -75,7 +75,7 @@ export default class Encoder extends EncodeData {
     }
 
     setBitsNumber(eCVersion) {
-        return errorCorrectionCodeWords[eCVersion] * 8;
+        return errorCorrectionCodeWords[eCVersion]['totalNumberOfDataCodewords'] * 8;
     }
 
     complete8BitCapacity(modeIndicator, characterCountIndicator, encodedData, dataBitCapacity, terminator = '0000') {
