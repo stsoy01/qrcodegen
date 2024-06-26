@@ -1041,56 +1041,230 @@ export const errorCorrectionVersion = JSON.stringify({
     }
 })
 
+/**
+ * blocksQuantityIn_1Group - кол-во блоков в 1 группе
+ * codeWordsIn_EachBlock_1Group - кол-во битовой информации в каждой группе 1 блока
+ * blocksQuantityIn_2Group - кол-во блоков в 2 группе
+ * codeWordsIn_EachBlock_2Group - кол-во битовой информации в каждой группе 2 блока
+ * eCCodewordsPerBlock - кол-во байтов коррекйии на 1 блок
+ * totalNumberOfDataCodewords - кол-во 8-битовых строк закодированных в двоичной системе (например 01000011)
+ */
 export const errorCorrectionCodeWords = {
-    '1-L': {totalNumberOfDataCodewords: 19},
-    '1-M': {totalNumberOfDataCodewords: 16},
-    '1-Q': {totalNumberOfDataCodewords: 13},
-    '1-H': {totalNumberOfDataCodewords: 9},
-    '2-L': {totalNumberOfDataCodewords: 34},
-    '2-M': {totalNumberOfDataCodewords: 28},
-    '2-Q': {totalNumberOfDataCodewords: 22},
-    '2-H': {totalNumberOfDataCodewords: 16},
-    '3-L': {totalNumberOfDataCodewords: 55},
-    '3-M': {totalNumberOfDataCodewords: 44},
-    '3-Q': {totalNumberOfDataCodewords: 34},
-    '3-H': {totalNumberOfDataCodewords: 26},
-    '4-L': {totalNumberOfDataCodewords: 80},
-    '4-M': {totalNumberOfDataCodewords: 64},
-    '4-Q': {totalNumberOfDataCodewords: 48},
-    '4-H': {totalNumberOfDataCodewords: 36},
-    '5-L': {totalNumberOfDataCodewords: 108},
-    '5-M': {totalNumberOfDataCodewords: 86},
-    '5-Q': {totalNumberOfDataCodewords: 62},
-    '5-H': {totalNumberOfDataCodewords: 46},
-    '6-L': {totalNumberOfDataCodewords: 136},
-    '6-M': {totalNumberOfDataCodewords: 108},
-    '6-Q': {totalNumberOfDataCodewords: 76},
-    '6-H': {totalNumberOfDataCodewords: 60},
-    '7-L': {totalNumberOfDataCodewords: 156},
-    '7-M': {totalNumberOfDataCodewords: 124},
-    '7-Q': {totalNumberOfDataCodewords: 88},
-    '7-H': {totalNumberOfDataCodewords: 66},
-    '8-L': {totalNumberOfDataCodewords: 194},
-    '8-M': {totalNumberOfDataCodewords: 154},
-    '8-Q': {totalNumberOfDataCodewords: 110},
-    '8-H': {totalNumberOfDataCodewords: 86},
-    '9-L': {totalNumberOfDataCodewords: 232},
-    '9-M': {totalNumberOfDataCodewords: 182},
-    '9-Q': {totalNumberOfDataCodewords: 132},
-    '9-H': {totalNumberOfDataCodewords: 100},
-    '10-L': {totalNumberOfDataCodewords: 274},
-    '10-M': {totalNumberOfDataCodewords: 216},
-    '10-Q': {totalNumberOfDataCodewords: 154},
-    '10-H': {totalNumberOfDataCodewords: 122},
-    '11-L': {totalNumberOfDataCodewords: 324},
-    '11-M': {totalNumberOfDataCodewords: 254},
-    '11-Q': {totalNumberOfDataCodewords: 180},
-    '11-H': {totalNumberOfDataCodewords: 140},
-    '12-L': {totalNumberOfDataCodewords: 370},
-    '12-M': {totalNumberOfDataCodewords: 290},
-    '12-Q': {totalNumberOfDataCodewords: 206},
-    '12-H': {totalNumberOfDataCodewords: 158},
-    '13-L': {totalNumberOfDataCodewords: 428},
+    '1-L': {totalNumberOfDataCodewords: 19, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 19},
+    '1-M': {totalNumberOfDataCodewords: 16, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 16},
+    '1-Q': {totalNumberOfDataCodewords: 13, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 13},
+    '1-H': {totalNumberOfDataCodewords: 9, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 9},
+    '2-L': {totalNumberOfDataCodewords: 34, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 34},
+    '2-M': {totalNumberOfDataCodewords: 28, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 28},
+    '2-Q': {totalNumberOfDataCodewords: 22, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 22},
+    '2-H': {totalNumberOfDataCodewords: 16, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 16},
+    '3-L': {totalNumberOfDataCodewords: 55, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 55},
+    '3-M': {totalNumberOfDataCodewords: 44, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 44},
+    '3-Q': {totalNumberOfDataCodewords: 34, blocksQuantityIn_1Group: 2, codeWordsIn_EachBlock_1Group: 17},
+    '3-H': {totalNumberOfDataCodewords: 26, blocksQuantityIn_1Group: 2, codeWordsIn_EachBlock_1Group: 13},
+    '4-L': {totalNumberOfDataCodewords: 80, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 80},
+    '4-M': {totalNumberOfDataCodewords: 64, blocksQuantityIn_1Group: 2, codeWordsIn_EachBlock_1Group: 32},
+    '4-Q': {totalNumberOfDataCodewords: 48, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 24},
+    '4-H': {totalNumberOfDataCodewords: 36, blocksQuantityIn_1Group: 4, codeWordsIn_EachBlock_1Group: 9},
+    '5-L': {totalNumberOfDataCodewords: 108, blocksQuantityIn_1Group: 1, codeWordsIn_EachBlock_1Group: 108},
+    '5-M': {totalNumberOfDataCodewords: 86, blocksQuantityIn_1Group: 2, codeWordsIn_EachBlock_1Group: 43},
+    '5-Q': {
+        totalNumberOfDataCodewords: 62,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 15,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 16
+    },
+    '5-H': {
+        totalNumberOfDataCodewords: 46,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 11,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 12
+    },
+    '6-L': {
+        totalNumberOfDataCodewords: 136,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 68
+    },
+    '6-M': {
+        totalNumberOfDataCodewords: 108,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 27
+    },
+    '6-Q': {
+        totalNumberOfDataCodewords: 76,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 19
+    },
+    '6-H': {
+        totalNumberOfDataCodewords: 60,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 15
+    },
+    '7-L': {
+        totalNumberOfDataCodewords: 156,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 78
+    },
+    '7-M': {
+        totalNumberOfDataCodewords: 124,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 31
+    },
+    '7-Q': {
+        totalNumberOfDataCodewords: 88,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 14,
+        blocksQuantityIn_2Group: 4,
+        codeWordsIn_EachBlock_2Group: 15
+    },
+    '7-H': {
+        totalNumberOfDataCodewords: 66,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 13,
+        blocksQuantityIn_2Group: 1,
+        codeWordsIn_EachBlock_2Group: 14
+    },
+    '8-L': {
+        totalNumberOfDataCodewords: 194,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 97
+    },
+    '8-M': {
+        totalNumberOfDataCodewords: 154,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 38,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 39
+    },
+    '8-Q': {
+        totalNumberOfDataCodewords: 110,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 18,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 19
+    },
+    '8-H': {
+        totalNumberOfDataCodewords: 86,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 14,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 15
+    },
+    '9-L': {
+        totalNumberOfDataCodewords: 232,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 116
+    },
+    '9-M': {
+        totalNumberOfDataCodewords: 182,
+        blocksQuantityIn_1Group: 3,
+        codeWordsIn_EachBlock_1Group: 36,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 37
+    },
+    '9-Q': {
+        totalNumberOfDataCodewords: 132,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 16,
+        blocksQuantityIn_2Group: 4,
+        codeWordsIn_EachBlock_2Group: 17
+    },
+    '9-H': {
+        totalNumberOfDataCodewords: 100,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 12,
+        blocksQuantityIn_2Group: 4,
+        codeWordsIn_EachBlock_2Group: 13
+    },
+    '10-L': {
+        totalNumberOfDataCodewords: 274,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 68,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 69
+    },
+    '10-M': {
+        totalNumberOfDataCodewords: 216,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 43,
+        blocksQuantityIn_2Group: 1,
+        codeWordsIn_EachBlock_2Group: 44
+    },
+    '10-Q': {
+        totalNumberOfDataCodewords: 154,
+        blocksQuantityIn_1Group: 6,
+        codeWordsIn_EachBlock_1Group: 19,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 20
+    },
+    '10-H': {
+        totalNumberOfDataCodewords: 122,
+        blocksQuantityIn_1Group: 6,
+        codeWordsIn_EachBlock_1Group: 15,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 16
+    },
+    '11-L': {
+        totalNumberOfDataCodewords: 324,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 81
+    },
+    '11-M': {
+        totalNumberOfDataCodewords: 254,
+        blocksQuantityIn_1Group: 1,
+        codeWordsIn_EachBlock_1Group: 50,
+        blocksQuantityIn_2Group: 4,
+        codeWordsIn_EachBlock_2Group: 51
+    },
+    '11-Q': {
+        totalNumberOfDataCodewords: 180,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 22,
+        blocksQuantityIn_2Group: 4,
+        codeWordsIn_EachBlock_2Group: 23
+    },
+    '11-H': {
+        totalNumberOfDataCodewords: 140,
+        blocksQuantityIn_1Group: 3,
+        codeWordsIn_EachBlock_1Group: 12,
+        blocksQuantityIn_2Group: 8,
+        codeWordsIn_EachBlock_2Group: 13
+    },
+    '12-L': {
+        totalNumberOfDataCodewords: 370,
+        blocksQuantityIn_1Group: 2,
+        codeWordsIn_EachBlock_1Group: 92,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 93
+    },
+    '12-M': {
+        totalNumberOfDataCodewords: 290,
+        blocksQuantityIn_1Group: 6,
+        codeWordsIn_EachBlock_1Group: 36,
+        blocksQuantityIn_2Group: 2,
+        codeWordsIn_EachBlock_2Group: 37
+    },
+    '12-Q': {
+        totalNumberOfDataCodewords: 206,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 20,
+        blocksQuantityIn_2Group: 6,
+        codeWordsIn_EachBlock_2Group: 21
+    },
+    '12-H': {
+        totalNumberOfDataCodewords: 158,
+        blocksQuantityIn_1Group: 7,
+        codeWordsIn_EachBlock_1Group: 14,
+        blocksQuantityIn_2Group: 4,
+        codeWordsIn_EachBlock_2Group: 15
+    },
+    '13-L': {
+        totalNumberOfDataCodewords: 428,
+        blocksQuantityIn_1Group: 4,
+        codeWordsIn_EachBlock_1Group: 107
+    },
     '13-M': {totalNumberOfDataCodewords: 334},
     '13-Q': {totalNumberOfDataCodewords: 244},
     '13-H': {totalNumberOfDataCodewords: 180},
