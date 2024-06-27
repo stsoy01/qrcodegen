@@ -85,7 +85,7 @@ export default class Encoder extends EncodeData {
     }
 
     setPolynomial8BitDataString(_8bitString) {
-        console.log('string', _8bitString.match(/.{1,8}/g))
+        // console.log('string', _8bitString.match(/.{1,8}/g))
     }
 
     binaryToDecimal(num) {
