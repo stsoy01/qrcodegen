@@ -1,8 +1,10 @@
 import EncodeData from "./encodeData";
+import {errorCorrectionCodeWords} from "./errorCorrectionVersion";
 
 export default class Encoder extends EncodeData {
 
   errorCorrectionObject = {}
+    counter = 0;
 
   alphanumericEncoding(mode = 'alphaNumeric', str) {
     const string = str.toUpperCase().split('');
@@ -50,32 +52,60 @@ export default class Encoder extends EncodeData {
     if (binaryNumber.length >= 11) return binaryNumber;
 
 
-    while (binaryNumber.length !== 11) {
-      binaryNumber = '0' + binaryNumber;
-    }
-    return binaryNumber
-  }
-
-  getErrorCorrectionVersion(obj, mode, stringLength) {
-    let objectArray = []
-    let flag = 0
-
-    for (const version in obj) {
-
-      objectArray = Object.entries(obj[version]);
-      // eslint-disable-next-line no-loop-func
-      objectArray.map((el) => {
-        if (el[1][mode] >= 195 && flag === 0) {
-          this.errorCorrectionObject.version = version;
-          this.errorCorrectionObject.letter = el[0];
-          this.errorCorrectionObject.value = {
-            mode,
-            value: el[1][mode]
-          };
-          flag++;
+        while (binaryNumber.length !== 11) {
+            binaryNumber = '0' + binaryNumber;
         }
-      })
+        return binaryNumber
     }
-    return this.errorCorrectionObject;
-  }
+
+    getErrorCorrectionVersion(obj, mode, stringLength) {
+        for (const version in obj) {
+            Object.entries(obj[version]).forEach((el) => {
+                if (el[1][mode] >= stringLength && this.counter === 0) {
+                    this.errorCorrectionObject.version = `${version}-${el[0]}`;
+                    this.errorCorrectionObject.data = {
+                        value: el[1][mode],
+                        mode: mode
+                    }
+                    this.counter++;
+                }
+            })
+        }
+        return this.errorCorrectionObject
+    }
+
+    setBitsNumber(eCVersion) {
+        return errorCorrectionCodeWords[eCVersion] * 8;
+    }
+
+    complete8BitCapacity(modeIndicator, characterCountIndicator, encodedData, dataBitCapacity, terminator = '0000') {
+        let _8bitString = `${modeIndicator}${characterCountIndicator}${encodedData.join('')}${terminator}`
+        _8bitString = _8bitString.match(/.{1,8}/g).map(el => el.length !== 8 ? el.padEnd(8, '0') : el)
+        return _8bitString.join('').padEnd(dataBitCapacity, '1110110000010001')
+    }
+
+    setPolynomial8BitDataString(_8bitString) {
+        console.log('string', _8bitString.match(/.{1,8}/g))
+    }
+
+    binaryToDecimal(num) {
+        let numArray = num.match(/.{1,8}/g);
+        let index = 7;
+        let counter = 0
+        let arr = []
+        for (let number of numArray) {
+            for (let letter of number) {
+                if (letter === '1') {
+                    counter += (2 ** index);
+                }
+                index--;
+                if (index < 0) {
+                    index = 7
+                    arr.push(counter);
+                    counter = 0;
+                }
+            }
+        }
+        return arr;
+    }
 }
