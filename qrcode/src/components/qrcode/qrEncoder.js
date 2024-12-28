@@ -1,7 +1,6 @@
-import EncodeData from "./encodeData";
 import {errorCorrectionCodeWords} from "./errorCorrectionVersion";
 
-export default class Encoder extends EncodeData {
+export default class Encoder  {
 
   errorCorrectionObject = {};
   counter = 0;
