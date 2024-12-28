@@ -16,24 +16,21 @@ export default function QrCode() {
         encoder.errorCorrectionVersion,
         'alphaNumeric',
         binaryEncoding.characterCount.decimal);
-    console.log('errorCorrection', errorCorrection)
+    
     const dataBitCapacity = encoder.setBitsNumber(errorCorrection.version);
-    console.log('dataBitCapacity', dataBitCapacity)
     const full8BitString = encoder.complete8BitCapacity(
         binaryEncoding.modeIndicator.data,
         binaryEncoding.characterCount.binary,
         binaryEncoding.encodedData,
         dataBitCapacity
     )
+    
     encoder.setPolynomial8BitDataString(full8BitString)
     console.log(encoder.binaryToDecimal(full8BitString))
-
-
 
     function ringing(e) {
         setQR(e.target.value)
     }
-
 
     return (
         <>
@@ -42,6 +39,5 @@ export default function QrCode() {
                 <button >{"Generate QR"}</button>
             </div>
         </>
-
     )
 }
